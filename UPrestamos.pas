@@ -46,17 +46,17 @@ begin
      StringGrid1.Cells[2, 0] := 'Fecha salida';
      StringGrid1.Cells[3, 0] := 'Fecha devolucion';
 
-     StringGrid1.ColWidths[0] := 50;
-     StringGrid1.ColWidths[1] := 250;
-     StringGrid1.ColWidths[2] := 150;
-     StringGrid1.ColWidths[3] := 80;
+     StringGrid1.ColWidths[0] := 80;
+     StringGrid1.ColWidths[1] := 80;
+     StringGrid1.ColWidths[2] := 100;
+     StringGrid1.ColWidths[3] := 100;
 
      dbModule.PrestamosQuery.First;
      fila := 1;
      while not dbModule.PrestamosQuery.Eof do
      begin
           StringGrid1.Cells[0, fila] := dbModule.PrestamosQuery.FieldByName('id_prestamo').AsString;
-          StringGrid1.Cells[1, fila] := dbModule.PrestamosQuery.FieldByName('id_usuario').AsString;
+          StringGrid1.Cells[1, fila] := dbModule.PrestamosQuery.FieldByName('id_usr').AsString;
           StringGrid1.Cells[2, fila] := dbModule.PrestamosQuery.FieldByName('fecha_salida').AsString;
           StringGrid1.Cells[3, fila] := dbModule.PrestamosQuery.FieldByName('fecha_devolucion').AsString;
           // Agregar btnEliminar

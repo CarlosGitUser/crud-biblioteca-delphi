@@ -6,6 +6,7 @@ object dbModule: TdbModule
     Params.Strings = (
       'LockingMode=Normal'
       'DriverID=SQLite')
+    Connected = True
     AfterConnect = ConexionAfterConnect
     BeforeConnect = ConexionBeforeConnect
     Left = 72
@@ -32,7 +33,12 @@ object dbModule: TdbModule
   end
   object UsuariosQuery: TFDQuery
     Connection = Conexion
-    Left = 208
-    Top = 328
+    Left = 216
+    Top = 320
+  end
+  object LibrosQuery: TFDQuery
+    Connection = Conexion
+    Left = 368
+    Top = 312
   end
 end

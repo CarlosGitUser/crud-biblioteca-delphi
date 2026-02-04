@@ -17,6 +17,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAgregarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -32,7 +33,23 @@ implementation
 
 {$R *.dfm}
 
-uses UMain, dmData;
+uses UMain, dmData, UAltaUsuario;
+
+procedure TfrmUsuarios.btnAgregarClick(Sender: TObject);
+begin
+     if not Assigned(UAltaUsuario.frmAltaUsuario) then
+        Application.CreateForm(UAltaUsuario.TfrmAltaUsuario, UAltaUsuario.frmAltaUsuario);
+     try
+        if frmAltaUsuario.ShowModal = mrOk then
+        begin
+          ActualizarGrid;
+        end;
+
+     finally
+            FreeAndNil(frmAltaUsuario);
+     end;
+
+end;
 
 procedure TfrmUsuarios.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -73,18 +90,18 @@ begin
      fila := 1;
      while not dbModule.UsuariosQuery.Eof do
      begin
-       StringGrid1.Cells[0, fila] := dbModule.UsuariosQuery.ParamByName('id_usuario').AsString;
-       StringGrid1.Cells[1, fila] := dbModule.UsuariosQuery.ParamByName('nombre').AsString;
+       StringGrid1.Cells[0, fila] := dbModule.UsuariosQuery.FieldByName('id_usuario').AsString;
+       StringGrid1.Cells[1, fila] := dbModule.UsuariosQuery.FieldByName('nombre').AsString;
 
-       tipo_usuario := dbModule.UsuariosQuery.ParamByName('tipo_usuario').AsInteger;
+       tipo_usuario := dbModule.UsuariosQuery.FieldByName('tipo_usuario').AsInteger;
        if tipo_usuario = 0 then
           StringGrid1.Cells[2, fila] := 'Regular'
-       else StringGrid1.Cells[2, 0] := 'Estudiante';
+       else StringGrid1.Cells[2, fila] := 'Estudiante';
 
-       tiene_prestamo := dbModule.UsuariosQuery.ParamByName('tiene_prestamo').AsInteger;
+       tiene_prestamo := dbModule.UsuariosQuery.FieldByName('tiene_prestamo').AsInteger;
        if tiene_prestamo = 1 then
           StringGrid1.Cells[3, fila] := 'Si'
-       else StringGrid1.Cells[3, 0] := 'No';
+       else StringGrid1.Cells[3, fila] := 'No';
 
        Inc(fila);
        dbModule.UsuariosQuery.Next;

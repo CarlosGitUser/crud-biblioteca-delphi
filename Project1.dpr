@@ -6,7 +6,8 @@ uses
   dmData in 'dmData.pas' {dbModule: TDataModule},
   UPrestamos in 'UPrestamos.pas' {frmPrestamos},
   UUsuarios in 'UUsuarios.pas' {frmUsuarios},
-  ULibros in 'ULibros.pas' {frmLibros};
+  ULibros in 'ULibros.pas' {frmLibros},
+  UAltaUsuario in 'UAltaUsuario.pas' {frmAltaUsuario};
 
 {$R *.res}
 
@@ -18,5 +19,6 @@ begin
   Application.CreateForm(TfrmPrestamos, frmPrestamos);
   Application.CreateForm(TfrmUsuarios, frmUsuarios);
   Application.CreateForm(TfrmLibros, frmLibros);
+  Application.CreateForm(TfrmAltaUsuario, frmAltaUsuario);
   Application.Run;
 end.

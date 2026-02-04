@@ -28,7 +28,7 @@ implementation
 
 {$R *.dfm}
 
-uses dmData, ULibros, UPrestamos, UUsuarios;
+uses  ULibros, UPrestamos, UUsuarios;
 
 procedure TfrmMain.btnLibrosClick(Sender: TObject);
 begin

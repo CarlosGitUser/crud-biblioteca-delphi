@@ -12,4 +12,53 @@ object frmLibros: TfrmLibros
   Font.Style = []
   OnClose = FormClose
   TextHeight = 15
+  object StringGrid1: TStringGrid
+    Left = 31
+    Top = 166
+    Width = 570
+    Height = 259
+    Align = alCustom
+    ColCount = 4
+    TabOrder = 0
+  end
+  object EditBajas: TEdit
+    Left = 31
+    Top = 104
+    Width = 73
+    Height = 23
+    TabOrder = 1
+    TextHint = 'ID'
+  end
+  object EditCambios: TEdit
+    Left = 31
+    Top = 56
+    Width = 73
+    Height = 23
+    TabOrder = 2
+    TextHint = 'ID'
+  end
+  object btnEliminar: TButton
+    Left = 152
+    Top = 55
+    Width = 75
+    Height = 25
+    Caption = 'Eliminar'
+    TabOrder = 3
+  end
+  object btnModificar: TButton
+    Left = 152
+    Top = 103
+    Width = 75
+    Height = 25
+    Caption = 'Modificar'
+    TabOrder = 4
+  end
+  object btnAgregar: TButton
+    Left = 374
+    Top = 103
+    Width = 75
+    Height = 25
+    Caption = 'Agregar'
+    TabOrder = 5
+  end
 end

@@ -23,6 +23,7 @@ type
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     PrestamosQuery: TFDQuery;
     UsuariosQuery: TFDQuery;
+    LibrosQuery: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure ConexionBeforeConnect(Sender: TObject);
     procedure ConexionAfterConnect(Sender: TObject);
@@ -61,10 +62,10 @@ begin
 
     Conexion.ExecSQL('CREATE TABLE IF NOT EXISTS Prestamo(' +
       'id_prestamo INTEGER PRIMARY KEY AUTOINCREMENT,' +
-      'id_usuario INTEGER NOT NULL,' +
+      'id_usr INTEGER NOT NULL,' +
       'fecha_salida DATE NOT NULL,' +
       'fecha_devolucion DATE,' +
-      'FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario))');
+      'FOREIGN KEY (id_usr) REFERENCES Usuario(id_usuario))');
 
     Conexion.ExecSQL('CREATE TABLE IF NOT EXISTS Detalle_prestamo(' +
       'id_prestamo INTEGER NOT NULL,' +
@@ -96,7 +97,7 @@ end;
 procedure TdbModule.CargarPrestamos;
 begin
      PrestamosQuery.Close;
-     PrestamosQuery.SQL.Text := 'SELECT id_prestamo, id_usuario, fecha_salida, fecha_devolucion FROM Prestamo';
+     PrestamosQuery.SQL.Text := 'SELECT id_prestamo, id_usr, fecha_salida, fecha_devolucion FROM Prestamo';
      PrestamosQuery.Open;
 end;
 

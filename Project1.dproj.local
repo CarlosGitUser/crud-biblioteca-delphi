@@ -3,11 +3,11 @@
 	<Transactions>
     <Transaction>2026/01/31 09:26:09.000.047,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2026/02/03 18:12:04.000.106,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2026/02/03 18:12:35.000.016,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\UMain.dfm</Transaction>
     <Transaction>2026/02/03 18:12:35.000.016,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\UMain.pas</Transaction>
+    <Transaction>2026/02/03 18:12:35.000.016,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\UMain.dfm</Transaction>
     <Transaction>2026/02/03 18:12:46.000.590,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2026/02/03 18:13:03.000.068,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\dmData.dfm</Transaction>
     <Transaction>2026/02/03 18:13:03.000.068,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\dmData.pas</Transaction>
+    <Transaction>2026/02/03 18:13:03.000.068,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\dmData.dfm</Transaction>
     <Transaction>2026/02/03 18:13:13.000.107,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>2026/02/03 18:13:29.000.134,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\UPrestamos.dfm</Transaction>
     <Transaction>2026/02/03 18:13:29.000.134,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\UPrestamos.pas</Transaction>
@@ -15,8 +15,13 @@
     <Transaction>2026/02/03 18:18:07.000.389,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\UUsuarios.pas</Transaction>
     <Transaction>2026/02/03 18:18:07.000.389,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\UUsuarios.dfm</Transaction>
     <Transaction>2026/02/03 18:18:22.000.557,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
-    <Transaction>2026/02/03 18:18:29.000.161,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit3.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\ULibros.pas</Transaction>
     <Transaction>2026/02/03 18:18:29.000.161,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit3.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\ULibros.dfm</Transaction>
+    <Transaction>2026/02/03 18:18:29.000.161,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit3.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\ULibros.pas</Transaction>
     <Transaction>2026/02/03 18:34:42.000.631,C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Project1.dproj=E:\RAD_Studio\Projects\CRUD_Biblioteca\Project1.dproj</Transaction>
+    <Transaction>2026/02/04 11:33:36.936,=E:\RAD_Studio\Projects\CRUD_Biblioteca\Unit1.pas</Transaction>
+    <Transaction>2026/02/04 11:33:47.210,E:\RAD_Studio\Projects\CRUD_Biblioteca\UAltaPrestamo.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\Unit1.dfm</Transaction>
+    <Transaction>2026/02/04 11:33:47.210,E:\RAD_Studio\Projects\CRUD_Biblioteca\UAltaPrestamo.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\Unit1.pas</Transaction>
+    <Transaction>2026/02/04 11:47:35.316,E:\RAD_Studio\Projects\CRUD_Biblioteca\UAltaUsuario.dfm=E:\RAD_Studio\Projects\CRUD_Biblioteca\UAltaPrestamo.dfm</Transaction>
+    <Transaction>2026/02/04 11:47:35.316,E:\RAD_Studio\Projects\CRUD_Biblioteca\UAltaUsuario.pas=E:\RAD_Studio\Projects\CRUD_Biblioteca\UAltaPrestamo.pas</Transaction>
   </Transactions>
 </BorlandProject>
