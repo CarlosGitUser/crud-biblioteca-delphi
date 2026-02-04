@@ -1,0 +1,24 @@
+unit UPrestamos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TfrmPrestamos = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrestamos: TfrmPrestamos;
+
+implementation
+
+{$R *.dfm}
+
+end.
