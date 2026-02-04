@@ -17,6 +17,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnAgregarClick(Sender: TObject);
   private
     { Private declarations }
     procedure ActualizarGrid;
@@ -31,7 +32,23 @@ implementation
 
 {$R *.dfm}
 
-uses UMain, dmData;
+uses UMain, dmData, UAltaLibro;
+
+procedure TfrmLibros.btnAgregarClick(Sender: TObject);
+begin
+     if not Assigned(UAltaLibro.frmAltaLibro) then
+        Application.CreateForm(UAltaLibro.TfrmAltaLibro, UAltaLibro.frmAltaLibro);
+     try
+        if frmAltaLibro.ShowModal = mrOk then
+        begin
+          ActualizarGrid;
+        end;
+
+     finally
+            FreeAndNil(frmAltaLibro);
+     end;
+
+end;
 
 procedure TfrmLibros.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

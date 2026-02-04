@@ -7,7 +7,8 @@ uses
   UPrestamos in 'UPrestamos.pas' {frmPrestamos},
   UUsuarios in 'UUsuarios.pas' {frmUsuarios},
   ULibros in 'ULibros.pas' {frmLibros},
-  UAltaUsuario in 'UAltaUsuario.pas' {frmAltaUsuario};
+  UAltaUsuario in 'UAltaUsuario.pas' {frmAltaUsuario},
+  UAltaLibro in 'UAltaLibro.pas' {frmAltaLibro};
 
 {$R *.res}
 
@@ -20,5 +21,6 @@ begin
   Application.CreateForm(TfrmUsuarios, frmUsuarios);
   Application.CreateForm(TfrmLibros, frmLibros);
   Application.CreateForm(TfrmAltaUsuario, frmAltaUsuario);
+  Application.CreateForm(TfrmAltaLibro, frmAltaLibro);
   Application.Run;
 end.

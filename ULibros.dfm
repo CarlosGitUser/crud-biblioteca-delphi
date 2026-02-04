@@ -62,5 +62,6 @@ object frmLibros: TfrmLibros
     Height = 25
     Caption = 'Agregar'
     TabOrder = 5
+    OnClick = btnAgregarClick
   end
 end

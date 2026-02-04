@@ -35,6 +35,7 @@ var
    nombre : string;
    LQuery : TFDQuery;
 begin
+     // Validacion de datos
      if cbUsuario.ItemIndex = -1 then
      begin
        ShowMessage('Debe seleccionar el tipo de usuario');
@@ -47,6 +48,8 @@ begin
            ShowMessage('Nombre no valido');
            Exit;
      end;
+
+     // Datos validados
      dbModule.Conexion.StartTransaction;
      try
         LQuery := TFDQuery.Create(nil);
