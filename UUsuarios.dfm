@@ -24,7 +24,7 @@ object frmUsuarios: TfrmUsuarios
     ColCount = 4
     TabOrder = 0
   end
-  object EditBajas: TEdit
+  object EditCambios: TEdit
     Left = 31
     Top = 104
     Width = 73
@@ -32,7 +32,7 @@ object frmUsuarios: TfrmUsuarios
     TabOrder = 1
     TextHint = 'ID'
   end
-  object EditCambios: TEdit
+  object EditBajas: TEdit
     Left = 31
     Top = 56
     Width = 73
@@ -47,6 +47,7 @@ object frmUsuarios: TfrmUsuarios
     Height = 25
     Caption = 'Eliminar'
     TabOrder = 3
+    OnClick = btnEliminarClick
   end
   object btnModificar: TButton
     Left = 152
@@ -55,6 +56,7 @@ object frmUsuarios: TfrmUsuarios
     Height = 25
     Caption = 'Modificar'
     TabOrder = 4
+    OnClick = btnModificarClick
   end
   object btnAgregar: TButton
     Left = 374

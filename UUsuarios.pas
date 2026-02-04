@@ -9,8 +9,8 @@ uses
 type
   TfrmUsuarios = class(TForm)
     StringGrid1: TStringGrid;
-    EditBajas: TEdit;
     EditCambios: TEdit;
+    EditBajas: TEdit;
     btnEliminar: TButton;
     btnModificar: TButton;
     btnAgregar: TButton;
@@ -18,12 +18,16 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnAgregarClick(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
+    procedure btnEliminarClick(Sender: TObject);
 
   private
     { Private declarations }
+    ID_usuario : Integer;
     procedure ActualizarGrid;
   public
     { Public declarations }
+    function getIdUsuario : Integer;
   end;
 
 var
@@ -33,7 +37,12 @@ implementation
 
 {$R *.dfm}
 
-uses UMain, dmData, UAltaUsuario;
+uses UMain, dmData, UAltaUsuario, UModificarUsuario;
+
+function TfrmUsuarios.getIdUsuario: Integer;
+begin
+
+end;
 
 procedure TfrmUsuarios.btnAgregarClick(Sender: TObject);
 begin
@@ -47,6 +56,56 @@ begin
 
      finally
             FreeAndNil(frmAltaUsuario);
+     end;
+
+end;
+
+procedure TfrmUsuarios.btnEliminarClick(Sender: TObject);
+var
+   idUsuario : Integer;
+begin
+     if EditBajas.Text = '' then
+     begin
+       ShowMessage('Se debe ingresar un ID');
+       Exit;
+     end;
+
+     if not TryStrToInt(EditBajas.Text, idUsuario) or (idUsuario < 0) then
+     begin
+       ShowMessage('ID no valido');
+       Exit;
+     end;
+
+
+end;
+
+procedure TfrmUsuarios.btnModificarClick(Sender: TObject);
+var
+   idUsuario : Integer;
+begin
+     if EditCambios.Text = '' then
+     begin
+       ShowMessage('Se debe ingresar un ID');
+       Exit;
+     end;
+
+     if not TryStrToInt(EditCambios.Text, idUsuario) or (idUsuario < 0) then
+     begin
+       ShowMessage('ID no valido');
+       Exit;
+     end;
+
+     if not Assigned(UModificarUsuario.frmModificarUsuario) then
+       Application.CreateForm(UModificarUsuario.TfrmModificarUsuario, UModificarUsuario.frmModificarUsuario);
+     try
+       frmModificarUsuario.IdUsuario := idUsuario;
+       frmModificarUsuario.CargarDatos;
+       if frmModificarUsuario.ShowModal = mrOk then
+       begin
+         ActualizarGrid;
+       end;
+     finally
+       FreeAndNil(frmModificarUsuario);
      end;
 
 end;
