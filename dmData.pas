@@ -103,7 +103,7 @@ end;
 procedure TdbModule.CargarUsuarios;
 begin
   UsuariosQuery.Close;
-  UsuariosQuery.SQL.Text := 'SELECT id_usuario, nombre, tipo_usuario, tiene_prestamos FROM Usuario';
+  UsuariosQuery.SQL.Text := 'SELECT id_usuario, nombre, tipo_usuario, tiene_prestamo FROM Usuario';
   UsuariosQuery.Open;
 end;
 

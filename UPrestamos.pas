@@ -10,6 +10,10 @@ type
   TfrmPrestamos = class(TForm)
     StringGrid1: TStringGrid;
     btnAgregar: TButton;
+    EditBajas: TEdit;
+    EditCambios: TEdit;
+    btnEliminar: TButton;
+    btnModificar: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -41,8 +45,11 @@ begin
      StringGrid1.Cells[1, 0] := 'ID Usuario';
      StringGrid1.Cells[2, 0] := 'Fecha salida';
      StringGrid1.Cells[3, 0] := 'Fecha devolucion';
-     StringGrid1.Cells[4, 0] := 'Eliminar';
-     StringGrid1.Cells[5, 0] := 'Modificar';
+
+     StringGrid1.ColWidths[0] := 50;
+     StringGrid1.ColWidths[1] := 250;
+     StringGrid1.ColWidths[2] := 150;
+     StringGrid1.ColWidths[3] := 80;
 
      dbModule.PrestamosQuery.First;
      fila := 1;
