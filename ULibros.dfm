@@ -11,6 +11,8 @@ object frmLibros: TfrmLibros
   Font.Name = 'Segoe UI'
   Font.Style = []
   OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
   TextHeight = 15
   object StringGrid1: TStringGrid
     Left = 31

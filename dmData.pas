@@ -33,6 +33,7 @@ type
     { Public declarations }
     procedure CargarPrestamos;
     procedure CargarUsuarios;
+    procedure CargarLibros;
   end;
 
 var
@@ -106,6 +107,13 @@ begin
   UsuariosQuery.Close;
   UsuariosQuery.SQL.Text := 'SELECT id_usuario, nombre, tipo_usuario, tiene_prestamo FROM Usuario';
   UsuariosQuery.Open;
+end;
+
+procedure TdbModule.CargarLibros;
+begin
+  LibrosQuery.Close;
+  LibrosQuery.SQL.Text := 'SELECT id_libro, titulo, autor, categoria, stock FROM Libro';
+  LibrosQuery.Open;
 end;
 
 end.

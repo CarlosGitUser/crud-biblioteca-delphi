@@ -106,11 +106,6 @@ begin
        Inc(fila);
        dbModule.UsuariosQuery.Next;
      end;
-
-
-
-
-
 end;
 
 end.
