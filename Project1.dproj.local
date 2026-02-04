@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2026/01/31 09:26:09.000.047,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/02/03 18:12:04.106,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/02/03 18:12:35.016,E:\RAD_Studio\Projects\CRUD_Biblioteca\UMain.pas=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/02/03 18:12:35.016,E:\RAD_Studio\Projects\CRUD_Biblioteca\UMain.dfm=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2026/02/03 18:12:46.590,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/02/03 18:13:03.068,E:\RAD_Studio\Projects\CRUD_Biblioteca\dmData.dfm=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2026/02/03 18:13:03.068,E:\RAD_Studio\Projects\CRUD_Biblioteca\dmData.pas=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/02/03 18:13:13.107,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2026/02/03 18:13:29.134,E:\RAD_Studio\Projects\CRUD_Biblioteca\UPrestamos.dfm=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2026/02/03 18:13:29.134,E:\RAD_Studio\Projects\CRUD_Biblioteca\UPrestamos.pas=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2026/02/03 18:17:47.546,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2026/02/03 18:18:07.389,E:\RAD_Studio\Projects\CRUD_Biblioteca\UUsuarios.dfm=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2026/02/03 18:18:07.389,E:\RAD_Studio\Projects\CRUD_Biblioteca\UUsuarios.pas=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2026/02/03 18:18:22.557,=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2026/02/03 18:18:29.161,E:\RAD_Studio\Projects\CRUD_Biblioteca\ULibros.dfm=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2026/02/03 18:18:29.161,E:\RAD_Studio\Projects\CRUD_Biblioteca\ULibros.pas=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2026/02/03 18:34:42.631,E:\RAD_Studio\Projects\CRUD_Biblioteca\Project1.dproj=C:\Users\carlo\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

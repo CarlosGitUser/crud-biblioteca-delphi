@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
 
 type
-  TForm2 = class(TForm)
+  TfrmUsuarios = class(TForm)
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -15,10 +16,18 @@ type
   end;
 
 var
-  Form2: TForm2;
+  frmUsuarios: TfrmUsuarios;
 
 implementation
 
 {$R *.dfm}
+
+uses UMain;
+
+procedure TfrmUsuarios.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+     frmUsuarios.Hide;
+     frmMain.Show;
+end;
 
 end.

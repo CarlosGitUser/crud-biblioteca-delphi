@@ -1,4 +1,4 @@
-object Form2: TForm2
+object frmUsuarios: TfrmUsuarios
   Left = 0
   Top = 0
   Caption = 'frmUsuarios'
@@ -10,5 +10,6 @@ object Form2: TForm2
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   TextHeight = 15
 end

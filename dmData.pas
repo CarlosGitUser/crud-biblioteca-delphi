@@ -96,7 +96,7 @@ end;
 procedure TdbModule.CargarPrestamos;
 begin
      PrestamosQuery.Close;
-     PrestamosQuery.SQL.Text := 'SELECT id_prestamo, id_cliente, fecha_salida, fecha_devolucion FROM Prestamo';
+     PrestamosQuery.SQL.Text := 'SELECT id_prestamo, id_usuario, fecha_salida, fecha_devolucion FROM Prestamo';
      PrestamosQuery.Open;
 end;
 
