@@ -45,7 +45,7 @@ uses dmData;
 procedure TfrmModificarLibros.btnGuardarClick(Sender: TObject);
 var
    LQuery : TFDQuery;
-   stock : Integer;
+   stockNuevo, prestamosActuales : Integer;
    titulo, autor, categoria : string;
 begin
 
@@ -60,22 +60,37 @@ begin
        Exit;
      end;
      // Para el stock validar que no se coloque menos stock del que hay en libros prestados
-     if not TryStrToInt(EditStock.Text, stock) or (stock < 0) then
+     if not TryStrToInt(EditStock.Text, stockNuevo) or (stockNuevo < 0) then
      begin
        ShowMessage('Numero de Stock invalido');
        Exit;
      end;
-
+     LQuery := TFDQuery.Create(nil);
      try
-        LQuery := TFDQuery.Create(nil);
+        // Validacion de stock con libros prestados
         LQuery.Connection := dbModule.Conexion;
+        LQuery.SQL.Text := 'SELECT COUNT(*) FROM Detalle_prestamo dp ' +
+                           'INNER JOIN Prestamo p ON dp.id_prestamo = p.id_prestamo ' +
+                           'WHERE dp.id_libro = :ID ' +
+                           'AND p.fecha_devolucion IS NULL';
+        LQuery.ParamByName('ID').AsInteger := FIdLibro;
+        LQuery.Open;
+        prestamosActuales := LQuery.Fields[0].AsInteger;
+        LQuery.Close;
+        if stockNuevo < prestamosActuales then
+        begin
+             ShowMessage('No se puede reducir el stock a ' + IntToStr(StockNuevo) +
+                         '. Actualmente hay ' + IntToStr(prestamosActuales) +
+                         ' libros prestados y no devueltos.');
+             Exit;
+        end;
         dbModule.Conexion.StartTransaction;
         try
            LQuery.SQL.Text := 'UPDATE Libro SET titulo = :Tit, autor = :Aut, stock = :Stock, categoria = :Cate ' +
             'WHERE id_libro = :ID';
            LQuery.ParamByName('Tit').AsString := titulo.Trim;
            LQuery.ParamByName('Aut').AsString := autor.Trim;
-           LQuery.ParamByName('Stock').AsInteger := stock;
+           LQuery.ParamByName('Stock').AsInteger := stockNuevo;
            LQuery.ParamByName('Cate').AsString := categoria.Trim.ToLower;
            LQuery.ParamByName('ID').AsInteger := FIdLibro;
            LQuery.ExecSQL;
