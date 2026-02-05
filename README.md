@@ -3,6 +3,17 @@
 ## Descripción del Proyecto
 Este proyecto es una aplicación de escritorio desarrollada en Delphi para la gestión de una biblioteca. Permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre libros, usuarios y préstamos. El sistema está diseñado para facilitar la administración básica de una biblioteca.
 
+## Reglas de negoccio
+- **Tipos de usuario** Existen dos tipos de usuario
+    - **Regular** Puede pedir un maximo de 5 libros por un maximo de 5 dias.
+    - **Estudiante** Puede pedir un maximo de 10 libros por un maximo de 10 dias.
+- **Prestamos** 
+    - **Cantidad prestamos** Cada usuario puede tener un prestamo activo a la vez.
+    - **Cantidad libros** Por cada prestamo solo se puede pedir una copia de cada libro.
+    - **Fechas** El inicio del prestamo se genere en la fecha del sistema.
+    - **Devolucion** Se calcula en base al tipo de usuario.
+
+
 ## Funcionalidades
 El sistema `CRUD_Biblioteca` ofrece las siguientes funcionalidades principales:
 
@@ -20,8 +31,6 @@ El sistema `CRUD_Biblioteca` ofrece las siguientes funcionalidades principales:
 -   **Alta de Préstamos**: Registro de nuevos préstamos de libros a usuarios (`UAltaPrestamo.pas`).
 -   **Consulta de Préstamos**: Visualización de los préstamos activos y su estado (`UPrestamos.pas`).
 
-## Alcance del Proyecto
-El alcance de este proyecto se centra en proporcionar una herramienta fundamental para la administración interna de una biblioteca, cubriendo las necesidades básicas de gestión de inventario (libros), miembros (usuarios) y transacciones (préstamos).
 
 ### Tecnologías Utilizadas
 -   **Delphi**: Lenguaje de programación y entorno de desarrollo.
