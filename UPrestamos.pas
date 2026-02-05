@@ -11,14 +11,14 @@ type
     StringGrid1: TStringGrid;
     btnAgregar: TButton;
     EditCambios: TEdit;
-    EditBajas: TEdit;
-    btnEliminar: TButton;
+    EditDevolucion: TEdit;
     btnModificar: TButton;
     btnDevolver: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btnAgregarClick(Sender: TObject);
+    procedure btnDevolverClick(Sender: TObject);
   private
     { Private declarations }
     procedure ActualizarGrid;
@@ -102,6 +102,87 @@ begin
      finally
         FreeAndNil(frmAltaPrestamo);
      end;
+end;
+
+procedure TfrmPrestamos.btnDevolverClick(Sender: TObject);
+var
+  IdPrestamo, IdUsuario: Integer;
+  LQuery: TFDQuery;
+begin
+  if EditDevolucion.Text = '' then
+  begin
+    ShowMessage('Ingresa el ID del prestamo a devolver');
+    Exit;
+  end;
+
+  if not TryStrToInt(EditDevolucion.Text, IdPrestamo) or (IdPrestamo <= 0) then
+  begin
+    ShowMessage('ID invalido.');
+    Exit;
+  end;
+
+  LQuery := TFDQuery.Create(nil);
+  try
+    LQuery.Connection := dbModule.Conexion;
+
+
+    LQuery.SQL.Text := 'SELECT id_usr, fecha_devolucion FROM Prestamo WHERE id_prestamo = :ID';
+    LQuery.ParamByName('ID').AsInteger := IdPrestamo;
+    LQuery.Open;
+
+    if LQuery.IsEmpty then
+    begin
+      ShowMessage('El prestamo no existe');
+      Exit;
+    end;
+
+
+    if (not LQuery.FieldByName('fecha_devolucion').IsNull) and
+       (LQuery.FieldByName('fecha_devolucion').AsString <> '') then
+    begin
+      ShowMessage('Prestamo ya devuelto');
+      Exit;
+    end;
+
+    IdUsuario := LQuery.FieldByName('id_usr').AsInteger;
+    LQuery.Close;
+
+    dbModule.Conexion.StartTransaction;
+    try
+
+      LQuery.SQL.Text := 'UPDATE Prestamo SET fecha_devolucion = :Fecha WHERE id_prestamo = :ID';
+      LQuery.ParamByName('Fecha').AsDate := Now;
+      LQuery.ParamByName('ID').AsInteger := IdPrestamo;
+      LQuery.ExecSQL;
+
+      // Recuperar Stock de Libros
+      LQuery.SQL.Text := 'UPDATE Libro SET stock = stock + 1 ' +
+                         'WHERE id_libro IN ' +
+                         '(SELECT id_libro FROM Detalle_prestamo WHERE id_prestamo = :ID)';
+      LQuery.ParamByName('ID').AsInteger := IdPrestamo;
+      LQuery.ExecSQL;
+
+      // Liberar al Usuario
+      LQuery.SQL.Text := 'UPDATE Usuario SET tiene_prestamo = 0 WHERE id_usuario = :IDUsr';
+      LQuery.ParamByName('IDUsr').AsInteger := IdUsuario;
+      LQuery.ExecSQL;
+
+      dbModule.Conexion.Commit;
+      ShowMessage('Devolucion registrad. Stock actualizado.');
+      EditDevolucion.Clear;
+      ActualizarGrid;
+
+    except
+      on E: Exception do
+      begin
+        dbModule.Conexion.Rollback;
+        ShowMessage('Error en la devolucion: ' + E.Message);
+      end;
+    end;
+
+  finally
+    LQuery.Free;
+  end;
 end;
 
 procedure TfrmPrestamos.FormClose(Sender: TObject; var Action: TCloseAction);

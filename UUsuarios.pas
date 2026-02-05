@@ -78,7 +78,7 @@ begin
   end;
 
   if MessageDlg('¿Realizar eliminacion del usuario ' + IntToStr(idUsuario) + '?',
-                mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+     mtConfirmation, [mbYes, mbNo], 0) = mrNo then
     Exit;
 
   LQuery := TFDQuery.Create(nil);

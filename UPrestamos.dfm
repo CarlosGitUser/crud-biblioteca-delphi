@@ -47,7 +47,7 @@ object frmPrestamos: TfrmPrestamos
     TabOrder = 2
     TextHint = 'ID'
   end
-  object EditBajas: TEdit
+  object EditDevolucion: TEdit
     Left = 8
     Top = 88
     Width = 73
@@ -55,28 +55,21 @@ object frmPrestamos: TfrmPrestamos
     TabOrder = 3
     TextHint = 'ID'
   end
-  object btnEliminar: TButton
-    Left = 104
-    Top = 87
-    Width = 75
-    Height = 25
-    Caption = 'Eliminar'
-    TabOrder = 4
-  end
   object btnModificar: TButton
     Left = 104
     Top = 127
     Width = 75
     Height = 25
     Caption = 'Modificar'
-    TabOrder = 5
+    TabOrder = 4
   end
   object btnDevolver: TButton
-    Left = 488
-    Top = 127
+    Left = 104
+    Top = 86
     Width = 75
     Height = 25
     Caption = 'Devolver'
-    TabOrder = 6
+    TabOrder = 5
+    OnClick = btnDevolverClick
   end
 end

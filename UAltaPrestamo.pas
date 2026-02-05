@@ -98,7 +98,7 @@ var
   IdUsuario, TipoUsuario, TienePrestamoActivo: Integer;
   LimiteLibros, DiasPrestamo: Integer;
   CantidadLibrosSeleccionados: Integer;
-  FechaDevolucionCalculada: TDateTime;
+  FechaLimiteEstimada: TDateTime;
   NuevoIdPrestamo, i, IdLibroGrid: Integer;
 begin
   // Validaciones
@@ -121,6 +121,7 @@ begin
   try
     LQuery.Connection := dbModule.Conexion;
 
+    // Obtener datos del usuario
     LQuery.SQL.Text := 'SELECT tipo_usuario, tiene_prestamo FROM Usuario WHERE id_usuario = :ID';
     LQuery.ParamByName('ID').AsInteger := IdUsuario;
     LQuery.Open;
@@ -138,7 +139,7 @@ begin
     // Si el usuario ya tiene prestamo se niega este
     if TienePrestamoActivo = 1 then
     begin
-      ShowMessage('Este usuario ya tiene un prestamo activo');
+      ShowMessage('Este usuario ya tiene un prestamo activo sin devolver');
       Exit;
     end;
 
@@ -159,18 +160,20 @@ begin
       Exit;
     end;
 
-    FechaDevolucionCalculada := DateTimePicker1.Date + DiasPrestamo;
+    FechaLimiteEstimada := DateTimePicker1.Date + DiasPrestamo;
 
     dbModule.Conexion.StartTransaction;
     try
-      LQuery.SQL.Text := 'INSERT INTO Prestamo (id_usr, fecha_salida, fecha_devolucion) ' +
-                         'VALUES (:IdUsr, :FechaSal, :FechaDev)';
+      LQuery.SQL.Text := 'INSERT INTO Prestamo (id_usr, fecha_salida) ' +
+                         'VALUES (:IdUsr, :FechaSal)';
+
       LQuery.ParamByName('IdUsr').AsInteger := IdUsuario;
       LQuery.ParamByName('FechaSal').AsDate := DateTimePicker1.Date;
-      LQuery.ParamByName('FechaDev').AsDate := FechaDevolucionCalculada;
+
       LQuery.ExecSQL;
 
-      LQuery.SQL.Text := 'SELECT last_insert_rowid()'; // Obtener id del prestamo
+      // Obtener id del prestamo recién creado
+      LQuery.SQL.Text := 'SELECT last_insert_rowid()';
       LQuery.Open;
       NuevoIdPrestamo := LQuery.Fields[0].AsInteger;
       LQuery.Close;
@@ -180,13 +183,14 @@ begin
       begin
         IdLibroGrid := StrToInt(StringGrid1.Cells[0, i]);
 
+        // Insertar Detalle
         LQuery.SQL.Text := 'INSERT INTO Detalle_prestamo (id_prestamo, id_libro) ' +
                            'VALUES (:IdPres, :IdLib)';
         LQuery.ParamByName('IdPres').AsInteger := NuevoIdPrestamo;
         LQuery.ParamByName('IdLib').AsInteger := IdLibroGrid;
         LQuery.ExecSQL;
 
-        // Update stock
+        // Bajar Stock
         LQuery.SQL.Text := 'UPDATE Libro SET stock = stock - 1 WHERE id_libro = :IdLib';
         LQuery.ParamByName('IdLib').AsInteger := IdLibroGrid;
         LQuery.ExecSQL;
@@ -198,7 +202,11 @@ begin
       LQuery.ExecSQL;
 
       dbModule.Conexion.Commit;
-      ShowMessage('Prestamo registrado. Fecha de devolucion: ' + DateToStr(FechaDevolucionCalculada));
+
+      // Mostrar fecha limite
+      ShowMessage('Prestamo registrado exitosamente.' + sLineBreak +
+                  'El usuario debe devolver los libros antes del: ' + DateToStr(FechaLimiteEstimada));
+
       ModalResult := mrOk;
 
     except
