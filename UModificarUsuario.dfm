@@ -1,6 +1,6 @@
 object frmModificarUsuario: TfrmModificarUsuario
-  Left = 0
-  Top = 0
+  Left = 735
+  Top = 353
   Caption = 'frmModificarUsuario'
   ClientHeight = 441
   ClientWidth = 624
@@ -10,6 +10,7 @@ object frmModificarUsuario: TfrmModificarUsuario
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   TextHeight = 15
   object Panel1: TPanel
     Left = 24

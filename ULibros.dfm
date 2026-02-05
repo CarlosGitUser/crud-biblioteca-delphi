@@ -1,6 +1,6 @@
 object frmLibros: TfrmLibros
-  Left = 0
-  Top = 0
+  Left = 735
+  Top = 353
   Caption = 'frmLibros'
   ClientHeight = 441
   ClientWidth = 624
@@ -10,6 +10,7 @@ object frmLibros: TfrmLibros
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow

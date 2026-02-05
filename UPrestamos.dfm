@@ -1,6 +1,6 @@
 object frmPrestamos: TfrmPrestamos
-  Left = 0
-  Top = 0
+  Left = 756
+  Top = 353
   Caption = 'frmPrestamos'
   ClientHeight = 441
   ClientWidth = 624
@@ -10,6 +10,7 @@ object frmPrestamos: TfrmPrestamos
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesigned
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow

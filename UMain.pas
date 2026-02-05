@@ -12,6 +12,7 @@ type
     btnPrestamos: TButton;
     btnUsuarios: TButton;
     btnLibros: TButton;
+    Label1: TLabel;
     procedure btnPrestamosClick(Sender: TObject);
     procedure btnUsuariosClick(Sender: TObject);
     procedure btnLibrosClick(Sender: TObject);
