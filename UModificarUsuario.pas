@@ -63,9 +63,10 @@ begin
      try
         LQuery := TFDQuery.Create(nil);
         LQuery.Connection := dbModule.Conexion;
+        dbModule.Conexion.StartTransaction;
         try
            LQuery.SQL.Text := 'UPDATE Usuario SET nombre = :Nom, tipo_usuario = :Tipo, tiene_prestamo = :Pres WHERE id_usuario = :ID';
-           LQuery.ParamByName('Nom').AsString := nombre;
+           LQuery.ParamByName('Nom').AsString := nombre.Trim;
            LQuery.ParamByName('Tipo').AsInteger := cbTipo.ItemIndex;
            LQuery.ParamByName('Pres').AsInteger := cbPrestamo.ItemIndex;
            LQuery.ParamByName('ID').AsInteger := FIdUsuario;

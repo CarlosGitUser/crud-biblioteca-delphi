@@ -23,7 +23,7 @@ object frmLibros: TfrmLibros
     ColCount = 4
     TabOrder = 0
   end
-  object EditBajas: TEdit
+  object EditCambios: TEdit
     Left = 31
     Top = 104
     Width = 73
@@ -31,7 +31,7 @@ object frmLibros: TfrmLibros
     TabOrder = 1
     TextHint = 'ID'
   end
-  object EditCambios: TEdit
+  object EditBajas: TEdit
     Left = 31
     Top = 56
     Width = 73
@@ -54,6 +54,7 @@ object frmLibros: TfrmLibros
     Height = 25
     Caption = 'Modificar'
     TabOrder = 4
+    OnClick = btnModificarClick
   end
   object btnAgregar: TButton
     Left = 374

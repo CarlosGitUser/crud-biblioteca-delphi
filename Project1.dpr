@@ -9,7 +9,8 @@ uses
   ULibros in 'ULibros.pas' {frmLibros},
   UAltaUsuario in 'UAltaUsuario.pas' {frmAltaUsuario},
   UAltaLibro in 'UAltaLibro.pas' {frmAltaLibro},
-  UModificarUsuario in 'UModificarUsuario.pas' {frmModificarUsuario};
+  UModificarUsuario in 'UModificarUsuario.pas' {frmModificarUsuario},
+  UModificarLibros in 'UModificarLibros.pas' {frmModificarLibros};
 
 {$R *.res}
 
@@ -24,5 +25,6 @@ begin
   Application.CreateForm(TfrmAltaUsuario, frmAltaUsuario);
   Application.CreateForm(TfrmAltaLibro, frmAltaLibro);
   Application.CreateForm(TfrmModificarUsuario, frmModificarUsuario);
+  Application.CreateForm(TfrmModificarLibros, frmModificarLibros);
   Application.Run;
 end.

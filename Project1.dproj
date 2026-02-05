@@ -156,6 +156,10 @@
             <Form>frmModificarUsuario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UModificarLibros.pas">
+            <Form>frmModificarLibros</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

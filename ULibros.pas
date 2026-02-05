@@ -9,8 +9,8 @@ uses
 type
   TfrmLibros = class(TForm)
     StringGrid1: TStringGrid;
-    EditBajas: TEdit;
     EditCambios: TEdit;
+    EditBajas: TEdit;
     btnEliminar: TButton;
     btnModificar: TButton;
     btnAgregar: TButton;
@@ -18,6 +18,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnAgregarClick(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
   private
     { Private declarations }
     procedure ActualizarGrid;
@@ -32,7 +33,7 @@ implementation
 
 {$R *.dfm}
 
-uses UMain, dmData, UAltaLibro;
+uses UMain, dmData, UAltaLibro, UModificarLibros;
 
 procedure TfrmLibros.btnAgregarClick(Sender: TObject);
 begin
@@ -46,6 +47,47 @@ begin
 
      finally
             FreeAndNil(frmAltaLibro);
+     end;
+
+end;
+
+procedure TfrmLibros.btnModificarClick(Sender: TObject);
+var
+   idLibro : Integer;
+begin
+     if EditCambios.Text = '' then
+     begin
+       ShowMessage('Se debe ingresar un ID');
+       Exit;
+     end;
+
+     if not TryStrToInt(EditCambios.Text, idLibro) or (idLibro < 0) then
+     begin
+       ShowMessage('ID no valido');
+       Exit;
+     end;
+
+     if not Assigned(UModificarLibros.frmModificarLibros) then
+       Application.CreateForm(UModificarLibros.TfrmModificarLibros, UModificarLibros.frmModificarLibros);
+
+     try
+        frmModificarLibros.IdLibro := idLibro;
+
+        if frmModificarLibros.CargarDatos then
+        begin
+             // Si existe el usuario
+             if frmModificarLibros.ShowModal = mrOk then
+             begin
+                ActualizarGrid;
+             end;
+        end
+        else
+        begin
+             ShowMessage('El usuario con ID ' + IntToStr(idLibro) + ' no existe.');
+        end;
+
+        finally
+          FreeAndNil(frmModificarLibros);
      end;
 
 end;
