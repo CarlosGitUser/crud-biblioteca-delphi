@@ -73,7 +73,7 @@ object frmModificarUsuario: TfrmModificarUsuario
         'Regular'
         'Alumno')
     end
-    object cbPermiso: TComboBox
+    object cbPrestamo: TComboBox
       Left = 320
       Top = 168
       Width = 145

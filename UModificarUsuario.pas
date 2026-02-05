@@ -12,7 +12,7 @@ type
     EditId: TEdit;
     EditNombre: TEdit;
     cbTipo: TComboBox;
-    cbPermiso: TComboBox;
+    cbPrestamo: TComboBox;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -27,7 +27,7 @@ type
   public
     { Public declarations }
     property IdUsuario : Integer read FIdUsuario write FIdUsuario;
-    procedure CargarDatos;
+    function CargarDatos : Boolean;
   end;
 
 var
@@ -42,8 +42,48 @@ uses dmData;
 procedure TfrmModificarUsuario.btnGuardarClick(Sender: TObject);
 var
    LQuery : TFDQuery;
+   tipo_usuario, tiene_prestamos : Integer;
+   nombre : string;
 begin
 
+     // Validacion de datos
+     if (cbTipo.ItemIndex = -1) or (cbPrestamo.ItemIndex = -1) then
+     begin
+       ShowMessage('ComboBox no valido');
+       Exit;
+     end;
+
+     nombre := EditNombre.Text;
+     if (nombre.Trim = '') or (nombre.Length < 3) then
+     begin
+           ShowMessage('Nombre no valido');
+           Exit;
+     end;
+
+     try
+        LQuery := TFDQuery.Create(nil);
+        LQuery.Connection := dbModule.Conexion;
+        try
+           LQuery.SQL.Text := 'UPDATE Usuario SET nombre = :Nom, tipo_usuario = :Tipo, tiene_prestamo = :Pres WHERE id_usuario = :ID';
+           LQuery.ParamByName('Nom').AsString := nombre;
+           LQuery.ParamByName('Tipo').AsInteger := cbTipo.ItemIndex;
+           LQuery.ParamByName('Pres').AsInteger := cbPrestamo.ItemIndex;
+           LQuery.ParamByName('ID').AsInteger := FIdUsuario;
+           LQuery.ExecSQL;
+           dbModule.Conexion.Commit;
+           ShowMessage('Datos modificados con exito');
+           ModalResult := mrOk;
+        except
+         on E: Exception do
+         begin
+            dbModule.Conexion.Rollback;
+            raise Exception.Create('Error en la modificacion de usuario: ' + E.Message);
+         end;
+        end;
+
+     finally
+        LQuery.Free;
+     end;
 
 
 end;
@@ -51,14 +91,13 @@ end;
 procedure TfrmModificarUsuario.btnSalirClick(Sender: TObject);
 begin
      ModalResult := mrCancel;
-     Exit;
 end;
 
-procedure TfrmModificarUsuario.CargarDatos;
+function TfrmModificarUsuario.CargarDatos : Boolean;
 var
    LQuery : TFDQuery;
 begin
-
+     Result := False;
      if FIdUsuario <= 0 then Exit;
 
 
@@ -74,18 +113,13 @@ begin
             EditId.Text := LQuery.FieldByName('id_usuario').AsString;
             EditNombre.Text := LQuery.FieldByName('nombre').AsString;
             cbTipo.ItemIndex := LQuery.FieldByName('tipo_usuario').AsInteger;
-            cbPermiso.ItemIndex := LQuery.FieldByName('tiene_prestamo').AsInteger;
-       end
-       else
-       begin
-         ShowMessage('Usuario no encontrado');
-         ModalResult := mrCancel;
-         Exit;
+            cbPrestamo.ItemIndex := LQuery.FieldByName('tiene_prestamo').AsInteger;
+            Result := True;
        end;
-
      finally
        LQuery.Free;
      end;
+     Exit;
 end;
 
 end.

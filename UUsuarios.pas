@@ -97,15 +97,25 @@ begin
 
      if not Assigned(UModificarUsuario.frmModificarUsuario) then
        Application.CreateForm(UModificarUsuario.TfrmModificarUsuario, UModificarUsuario.frmModificarUsuario);
+
      try
-       frmModificarUsuario.IdUsuario := idUsuario;
-       frmModificarUsuario.CargarDatos;
-       if frmModificarUsuario.ShowModal = mrOk then
-       begin
-         ActualizarGrid;
-       end;
-     finally
-       FreeAndNil(frmModificarUsuario);
+        frmModificarUsuario.IdUsuario := idUsuario;
+
+        if frmModificarUsuario.CargarDatos then
+        begin
+             // Si existe el usuario
+             if frmModificarUsuario.ShowModal = mrOk then
+             begin
+                ActualizarGrid;
+             end;
+        end
+        else
+        begin
+             ShowMessage('El usuario con ID ' + IntToStr(idUsuario) + ' no existe.');
+        end;
+
+        finally
+          FreeAndNil(frmModificarUsuario);
      end;
 
 end;
