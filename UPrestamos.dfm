@@ -31,7 +31,7 @@ object frmPrestamos: TfrmPrestamos
       64)
   end
   object btnAgregar: TButton
-    Left = 398
+    Left = 374
     Top = 127
     Width = 75
     Height = 25
@@ -39,7 +39,7 @@ object frmPrestamos: TfrmPrestamos
     TabOrder = 1
     OnClick = btnAgregarClick
   end
-  object EditBajas: TEdit
+  object EditCambios: TEdit
     Left = 8
     Top = 128
     Width = 73
@@ -47,7 +47,7 @@ object frmPrestamos: TfrmPrestamos
     TabOrder = 2
     TextHint = 'ID'
   end
-  object EditCambios: TEdit
+  object EditBajas: TEdit
     Left = 8
     Top = 88
     Width = 73
@@ -70,5 +70,13 @@ object frmPrestamos: TfrmPrestamos
     Height = 25
     Caption = 'Modificar'
     TabOrder = 5
+  end
+  object btnDevolver: TButton
+    Left = 488
+    Top = 127
+    Width = 75
+    Height = 25
+    Caption = 'Devolver'
+    TabOrder = 6
   end
 end

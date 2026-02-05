@@ -10,10 +10,11 @@ type
   TfrmPrestamos = class(TForm)
     StringGrid1: TStringGrid;
     btnAgregar: TButton;
-    EditBajas: TEdit;
     EditCambios: TEdit;
+    EditBajas: TEdit;
     btnEliminar: TButton;
     btnModificar: TButton;
+    btnDevolver: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);

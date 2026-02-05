@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, FireDac.Comp.Client;
 
 type
   TfrmLibros = class(TForm)
@@ -19,6 +19,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnAgregarClick(Sender: TObject);
     procedure btnModificarClick(Sender: TObject);
+    procedure btnEliminarClick(Sender: TObject);
   private
     { Private declarations }
     procedure ActualizarGrid;
@@ -49,6 +50,85 @@ begin
             FreeAndNil(frmAltaLibro);
      end;
 
+end;
+
+procedure TfrmLibros.btnEliminarClick(Sender: TObject);
+var
+  idLibro: Integer;
+  LQuery: TFDQuery;
+  LibrosPrestados: Integer;
+begin
+  if EditBajas.Text = '' then
+  begin
+    ShowMessage('Se debe ingresar el ID del libro a eliminar');
+    Exit;
+  end;
+
+  if not TryStrToInt(EditBajas.Text, idLibro) or (idLibro < 0) then
+  begin
+    ShowMessage('ID no válido.');
+    Exit;
+  end;
+
+  if MessageDlg('¿Realizar eliminacion del libro con ID ' + IntToStr(idLibro) + '?',
+                mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+    Exit;
+
+  LQuery := TFDQuery.Create(nil);
+  try
+    LQuery.Connection := dbModule.Conexion;
+    // Verificar si el libro a eliminar tiene prestamos
+    LQuery.SQL.Text := 'SELECT COUNT(*) FROM Detalle_prestamo dp ' +
+                       'INNER JOIN Prestamo p ON dp.id_prestamo = p.id_prestamo ' +
+                       'WHERE dp.id_libro = :ID AND p.fecha_devolucion IS NULL';
+    LQuery.ParamByName('ID').AsInteger := idLibro;
+    LQuery.Open;
+
+    LibrosPrestados := LQuery.Fields[0].AsInteger;
+    LQuery.Close;
+
+    if LibrosPrestados > 0 then
+    begin
+      ShowMessage('No se pueden eliminar libros que estan siendo prestados');
+      Exit;
+    end;
+
+    dbModule.Conexion.StartTransaction;
+    try
+      // Primero borrar referencias de la tabla de Detalles_prestamo
+      LQuery.SQL.Text := 'DELETE FROM Detalle_prestamo WHERE id_libro = :ID';
+      LQuery.ParamByName('ID').AsInteger := idLibro;
+      LQuery.ExecSQL;
+
+      // Luego eliminar la registro del libro
+      LQuery.SQL.Text := 'DELETE FROM Libro WHERE id_libro = :ID';
+      LQuery.ParamByName('ID').AsInteger := idLibro;
+      LQuery.ExecSQL;
+
+      if LQuery.RowsAffected = 0 then
+      begin
+        dbModule.Conexion.Rollback;
+        ShowMessage('El libro con ID ' + IntToStr(idLibro) + ' no existe en la base de datos.');
+      end
+      else
+      begin
+        dbModule.Conexion.Commit;
+        ShowMessage('Libro eliminado correctamente.');
+        EditBajas.Clear;
+        ActualizarGrid;
+      end;
+
+    except
+      on E: Exception do
+      begin
+        dbModule.Conexion.Rollback;
+        ShowMessage('Error al eliminar el libro: ' + E.Message);
+      end;
+    end;
+
+  finally
+    LQuery.Free;
+  end;
 end;
 
 procedure TfrmLibros.btnModificarClick(Sender: TObject);

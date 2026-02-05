@@ -47,6 +47,7 @@ object frmLibros: TfrmLibros
     Height = 25
     Caption = 'Eliminar'
     TabOrder = 3
+    OnClick = btnEliminarClick
   end
   object btnModificar: TButton
     Left = 152

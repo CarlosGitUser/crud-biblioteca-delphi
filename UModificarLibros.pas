@@ -67,7 +67,7 @@ begin
      end;
      LQuery := TFDQuery.Create(nil);
      try
-        // Validacion de stock con libros prestados
+        // Validacion de stock con libros prestados y sin fecha de devolucion
         LQuery.Connection := dbModule.Conexion;
         LQuery.SQL.Text := 'SELECT COUNT(*) FROM Detalle_prestamo dp ' +
                            'INNER JOIN Prestamo p ON dp.id_prestamo = p.id_prestamo ' +
