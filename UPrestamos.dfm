@@ -37,6 +37,7 @@ object frmPrestamos: TfrmPrestamos
     Height = 25
     Caption = 'Agregar'
     TabOrder = 1
+    OnClick = btnAgregarClick
   end
   object EditBajas: TEdit
     Left = 8

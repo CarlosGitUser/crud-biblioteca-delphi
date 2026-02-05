@@ -10,7 +10,8 @@ uses
   UAltaUsuario in 'UAltaUsuario.pas' {frmAltaUsuario},
   UAltaLibro in 'UAltaLibro.pas' {frmAltaLibro},
   UModificarUsuario in 'UModificarUsuario.pas' {frmModificarUsuario},
-  UModificarLibros in 'UModificarLibros.pas' {frmModificarLibros};
+  UModificarLibros in 'UModificarLibros.pas' {frmModificarLibros},
+  UAltaPrestamo in 'UAltaPrestamo.pas' {frmAltaPrestamo};
 
 {$R *.res}
 
@@ -26,5 +27,6 @@ begin
   Application.CreateForm(TfrmAltaLibro, frmAltaLibro);
   Application.CreateForm(TfrmModificarUsuario, frmModificarUsuario);
   Application.CreateForm(TfrmModificarLibros, frmModificarLibros);
+  Application.CreateForm(TfrmAltaPrestamo, frmAltaPrestamo);
   Application.Run;
 end.
