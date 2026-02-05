@@ -62,6 +62,7 @@ object frmPrestamos: TfrmPrestamos
     Height = 25
     Caption = 'Modificar'
     TabOrder = 4
+    OnClick = btnModificarClick
   end
   object btnDevolver: TButton
     Left = 104

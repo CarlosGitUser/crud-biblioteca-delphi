@@ -164,6 +164,10 @@
             <Form>frmAltaPrestamo</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UModificarPrestamos.pas">
+            <Form>frmModificarPrestamo</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

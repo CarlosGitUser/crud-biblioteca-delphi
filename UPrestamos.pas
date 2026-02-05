@@ -19,6 +19,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnAgregarClick(Sender: TObject);
     procedure btnDevolverClick(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
   private
     { Private declarations }
     procedure ActualizarGrid;
@@ -33,7 +34,7 @@ implementation
 
 {$R *.dfm}
 
-uses dmData, UMain, UAltaPrestamo;
+uses dmData, UMain, UAltaPrestamo, UModificarPrestamos;
 
 procedure TfrmPrestamos.ActualizarGrid;
 var
@@ -183,6 +184,43 @@ begin
   finally
     LQuery.Free;
   end;
+end;
+
+procedure TfrmPrestamos.btnModificarClick(Sender: TObject);
+var
+   IdPrestamo : Integer;
+begin
+     if EditCambios.Text = '' then
+     begin
+       ShowMessage('Se debe ingresar un ID');
+       Exit;
+     end;
+
+     if not TryStrToInt(EditCambios.Text, IdPrestamo) or (IdPrestamo <= 0) then
+     begin
+       ShowMessage('ID no valido');
+       Exit;
+     end;
+
+     if not Assigned(UModificarPrestamos.frmModificarPrestamo) then
+        Application.CreateForm(UModificarPrestamos.TfrmModificarPrestamo, UModificarPrestamos.frmModificarPrestamo);
+
+     try
+        frmModificarPrestamo.IdPrestamo := IdPrestamo;
+
+        if frmModificarPrestamo.CargarDatos then
+        begin
+          if frmModificarPrestamo.ShowModal = mrOk then
+          begin
+            ActualizarGrid;
+          end;
+        end;
+
+     finally
+        FreeAndNil(frmModificarPrestamo);
+     end;
+
+
 end;
 
 procedure TfrmPrestamos.FormClose(Sender: TObject; var Action: TCloseAction);

@@ -11,7 +11,8 @@ uses
   UAltaLibro in 'UAltaLibro.pas' {frmAltaLibro},
   UModificarUsuario in 'UModificarUsuario.pas' {frmModificarUsuario},
   UModificarLibros in 'UModificarLibros.pas' {frmModificarLibros},
-  UAltaPrestamo in 'UAltaPrestamo.pas' {frmAltaPrestamo};
+  UAltaPrestamo in 'UAltaPrestamo.pas' {frmAltaPrestamo},
+  UModificarPrestamos in 'UModificarPrestamos.pas' {frmModificarPrestamo};
 
 {$R *.res}
 
@@ -28,5 +29,6 @@ begin
   Application.CreateForm(TfrmModificarUsuario, frmModificarUsuario);
   Application.CreateForm(TfrmModificarLibros, frmModificarLibros);
   Application.CreateForm(TfrmAltaPrestamo, frmAltaPrestamo);
+  Application.CreateForm(TfrmModificarPrestamo, frmModificarPrestamo);
   Application.Run;
 end.
